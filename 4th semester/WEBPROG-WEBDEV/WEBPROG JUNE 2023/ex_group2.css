@@ -1,0 +1,28 @@
+
+h1{
+    justify-items: center;
+    margin: auto;
+
+}
+#box{
+    width: 200px;
+    height: 200px;
+    padding: 15px;
+    border: 2px solid;
+    font-size:  200px;
+    background-color: pink;
+    margin: auto;
+    align-items: center;
+    text-align: center;
+    
+
+}
+button{
+    display: block;
+    padding: 15px;
+    margin: auto;
+    align-items: center;
+    position:relative;
+    flex-direction:column;
+    opacity: 1/7;
+}
