@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1678210677 source:c:\users\user\desktop\03queueproject\03queue.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"QProbADT.h"
+

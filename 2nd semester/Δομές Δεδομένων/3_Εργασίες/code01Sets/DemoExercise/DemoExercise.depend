@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1677071727 source:c:\users\user\desktop\demoexercise\demoexercisesetadt.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
