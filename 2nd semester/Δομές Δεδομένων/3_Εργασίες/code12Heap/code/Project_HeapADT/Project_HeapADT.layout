@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="Debug" />
+	<File name="TestHeap.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="185" topLine="10" />
+		</Cursor>
+	</File>
+	<File name="..\ADT-Trees\HeapADT.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2930" topLine="80" />
+		</Cursor>
+	</File>
+	<File name="..\ADT-Trees\HeapADT.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="812" topLine="3" />
+		</Cursor>
+	</File>
+	<EditorTabsLayout layout="085f79c0646e7cef0000571500000002=0;Project_HeapADT:TestHeap.c,1;Project_HeapADT:..\ADT-Trees\HeapADT.c,2;Project_HeapADT:..\ADT-Trees\HeapADT.h@layout2|name=dummy;caption=;state=2098174;dir=3;layer=0;row=0;pos=0;prop=100000;bestw=905;besth=305;minw=905;minh=305;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|name=085f79c0646e7cef0000571500000002;caption=;state=2098172;dir=5;layer=0;row=0;pos=0;prop=100000;bestw=300;besth=300;minw=-1;minh=-1;maxw=-1;maxh=-1;floatx=-1;floaty=-1;floatw=-1;floath=-1|dock_size(5,0,0)=302|" />
+</CodeBlocks_layout_file>

@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1685196348 source:c:\users\user\desktop\a36f5project\a36f5.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
