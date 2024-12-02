@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+}
+h1{
+    margin-bottom: 10%;
+    font-size: 2.5rem;
+}
+
+.outer-square {
+    width: 160px; /* Initial size */
+    height: 160px; /* Initial size */
+    border: 2px solid;
+    position: relative;
+    margin: 0 auto;
+}
+
+#inner-square {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: lightgray;
+}
+
+    
+
+.controls {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.info {
+    margin-top: 20px;
+}
+#Square-area1 , #Square-area2{
+    font-weight: bold;
+}
+p {
+    margin: 5px 0;
+}
+#area-ratio{
+    font-weight: bold;
+}
+
