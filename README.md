@@ -3,7 +3,7 @@ My university assignments and more
 # Bachelor in Applied Informatics
 
 Welcome to the repository for the Bachelor in Applied Informatics at the University of Macedonia.
-<img src="https://images.app.goo.gl/tdcuSGscKkic3GpY7" >
+
 
 ## About
 
