@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1683184040 source:c:\users\user\desktop\f5project\f5.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+

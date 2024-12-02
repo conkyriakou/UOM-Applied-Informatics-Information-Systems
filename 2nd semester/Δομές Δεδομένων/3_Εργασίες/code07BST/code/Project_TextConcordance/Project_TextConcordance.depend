@@ -1,0 +1,42 @@
+# depslib dependency file v1.0
+1649649779 source:f:\externaldrive\courses\data_structures\1_lectures\lecture_06\code\adt-list\lpwordadt.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LPWordADT.h"
+
+1649649709 f:\externaldrive\courses\data_structures\1_lectures\lecture_06\code\adt-list\lpwordadt.h
+	<ctype.h>
+
+1649649818 source:f:\externaldrive\courses\data_structures\1_lectures\lecture_06\code\project_textconcordance\textconcordance.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"LPWordADT.h"
+
+1680429536 source:g:\Το drive μου\2022-2023\courses\spring\ds\lectures\lec07\code\adt-list\lpwordadt.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LPWordADT.h"
+
+1649613966 g:\Το drive μου\2022-2023\courses\spring\ds\lectures\lec07\code\adt-list\lpwordadt.h
+	<ctype.h>
+
+1649673737 source:g:\Το drive μου\2022-2023\courses\spring\ds\lectures\lec07\code\project_textconcordance\textconcordance.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+	<string.h>
+	"LPWordADT.h"
+
+1680397456 source:c:\maya\courses\data_structures\1_lectures\lecture_06\code\adt-list\lpwordadt.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"LPWordADT.h"
+
+1680397456 c:\maya\courses\data_structures\1_lectures\lecture_06\code\adt-list\lpwordadt.h
+	<ctype.h>
+
