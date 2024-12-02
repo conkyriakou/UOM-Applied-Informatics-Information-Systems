@@ -4,7 +4,7 @@ My university assignments and more
 
 Welcome to the repository for the Bachelor in Applied Informatics at the University of Macedonia.
 
-![University of Macedonia Logo]([https://mai.uom.gr/files4users/images/UOM_og_image.png](https://en.wikipedia.org/wiki/University_of_Macedonia#/media/File:University_of_Macedonia_logo.svg))
+![University of Macedonia Logo]([[https://mai.uom.gr/files4users/images/UOM_og_image.png](https://en.wikipedia.org/wiki/University_of_Macedonia#/media/File:University_of_Macedonia_logo.svg)](https://images.app.goo.gl/inojrF5uKetX27Ez7))
 
 ## About
 
