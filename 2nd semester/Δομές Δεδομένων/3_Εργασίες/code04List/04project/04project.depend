@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1678733840 source:c:\users\user\desktop\04project\04list.c
+	<stdio.h>
+	<stdlib.h>
+	<ctype.h>
+
