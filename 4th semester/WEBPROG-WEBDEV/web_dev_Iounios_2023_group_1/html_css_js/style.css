@@ -1,0 +1,44 @@
+.parent_container{
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 200px;
+  height: 200px;
+  border: 3px solid red;
+  display: flex;
+  flex-flow: wrap;
+  justify-content: safe; 
+}
+
+.button {
+  height: 30px;
+  width: 100px;
+  border-radius: 0px;
+}
+
+.button.left-up{
+  position: fixed;
+  border-style: solid;
+  margin-left: -120px;
+  margin-top: -3px;  
+}
+
+.button.right-up{
+  position: fixed;
+  margin-left: 220px;
+  margin-top: -3px;
+}
+
+.button.left-down{
+  position: fixed;
+  margin-left: -120px;
+  margin-top: 172px;  
+}
+
+.button.right-down{
+  position: fixed;
+  margin-left: 220px;
+  margin-top: 172px;
+}
