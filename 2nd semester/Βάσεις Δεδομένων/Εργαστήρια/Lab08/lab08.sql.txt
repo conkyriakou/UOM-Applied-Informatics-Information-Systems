@@ -1,0 +1,32 @@
+-- Lab08.pdf Λύσεις
+-- Τα ερωτήματα υλοποιήθηκαν σε PostgreSQL
+
+-- Α1. Ο συνολικός πληθυσμός της κάθε ηπείρου.
+select continent, sum(population)
+from country
+group by continent;
+
+-- Α2. Η πρωτεύουσα με τον μικρότερο πληθυσμό.
+select city.name
+from city join country on id=capital
+where city.population=(select min(city.population) 
+					   from city join country on id=capital);
+					   
+-- Α3. Ο μέσος πληθυσμός των χωρών της Ευρώπης.
+select avg(population)
+from country
+where continent='Europe';
+
+-- Α4. Ο πληθυσμός της Ευρώπης που μιλά την κάθε γλώσσα (σε φθίνουσα κατάταξη).
+select CL.Language, sum(CL.percentage*C.Population/100) as TotalPopulation
+from Country C join CountryLanguage CL on C.Code = CL.CountryCode
+where continent='Europe'
+group by CL.Language
+order by TotalPopulation desc;
+
+-- Α5. Το όνομα και η ήπειρος για τις χώρες οι οποίες έχουν τουλάχιστον 4 πόλεις με πληθυσμό άνω των 100000. 
+select country.name, continent
+from country join city on code=countrycode
+where city.population>100000
+group by code, country.name, continent
+having count(*)>=4;
