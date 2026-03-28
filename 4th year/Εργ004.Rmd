@@ -1,0 +1,214 @@
+---
+title: "EA - εργασία 004-Ανάλυση Εθισμού Φοιτητών στα Social Media"
+author: "Κωνσταντίνα Κυριάκου"
+date: "2026-03-23"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+## Περιγραφή του dataset και της πηγής του
+
+Το dataset "Student's Social Media Addiction" περιλαμβάνει ανωνυμοποιημένα δεδομένα που αφορούν τη συμπεριφορά μαθητών και φοιτητών (ηλικίας 16-25 ετών) στα μέσα κοινωνικής δικτύωσης. Καλύπτει διάφορες χώρες και ακαδημαϊκές βαθμίδες, εστιάζοντας στην ένταση χρήσης, τις προτιμήσεις στις πλατφόρμες και τη δυναμική των διαπροσωπικών τους σχέσεων.
+
+## Πηγή & Μεθοδολογία:
+
+Αρχικά τα δεδομένα πάρθηκαν από το kaggle με link: <https://www.kaggle.com/datasets/aminasalamt/social-media-dataset-2025>. Τα δεδομένα συλλέχθηκαν το πρώτο τρίμηνο (Q1) του 2025 μέσω διαδικτυακής έρευνας. Το ερωτηματολόγιο βασίστηκε σε έγκυρες κλίμακες μέτρησης (π.χ. Bergen Social Media Addiction Scale). Περιλαμβάνει ελέγχους ποιότητας (π.χ. αφαίρεση διπλότυπων εγγραφών, έλεγχο εύρους τιμών) και δεν περιέχει προσωπικά αναγνωρίσιμα στοιχεία.
+
+## Αιτιολόγηση της επιλογής σε σχέση με την επιχειρηματική αναλυτική
+
+Η επιλογή του συγκεκριμένου dataset είναι ιδιαίτερα σχετική με την επιχειρηματική αναλυτική, καθώς ο κλάδος της τεχνολογίας, του EdTech (εκπαιδευτική τεχνολογία) και του Digital Health αναζητά συνεχώς δεδομένα συμπεριφοράς χρηστών. Πιο συγκεκριμένα:
+
+-   **Εταιρείες Social Media & Marketing:** Μπορούν να κατανοήσουν ποια κοινά (ανά ηλικία ή πλατφόρμα) έχουν τη μεγαλύτερη αλληλεπίδραση (engagement), βοηθώντας στη στόχευση διαφημίσεων.
+
+-   **Εφαρμογές Ψυχικής Υγείας (Mental Health Apps):** Εντοπίζοντας τα τμήματα της αγοράς (market segments) με υψηλό σκορ εθισμού ή χαμηλή ποιότητα ύπνου, μπορούν να προσφέρουν στοχευμένες premium υπηρεσίες "ψηφιακής αποτοξίνωσης" (digital detox).
+
+-   **Εκπαιδευτικοί Οργανισμοί:** Με την ανάλυση του αντίκτυπου στην ακαδημαϊκή απόδοση, τα πανεπιστήμια μπορούν να αναπτύξουν στοχευμένα προγράμματα συμβουλευτικής, βελτιώνοντας το ποσοστό επιτυχίας των φοιτητών τους.
+
+    ## Αναφορά σε πιθανά επιχειρηματικά ερωτήματα που θα μπορούσαν να απαντηθούν
+
+    1.  Υπάρχει συγκεκριμένη πλατφόρμα (π.χ. TikTok vs LinkedIn) που οδηγεί σε υψηλότερα επίπεδα εθισμού;
+
+    2.  Μπορούμε να προβλέψουμε ποιοι χρήστες θα αναφέρουν μείωση της ακαδημαϊκής τους απόδοσης βάσει των ωρών χρήσης;
+
+    3.  Πώς συσχετίζονται οι ώρες ύπνου με το σκορ εθισμού και πώς μπορούν επιχειρήσεις wearable devices (π.χ. smartwatches) να αξιοποιήσουν αυτά τα όρια για health alerts;
+
+```{r }
+library(readr)
+library(ggplot2)
+library(dplyr)
+
+students_data <- read_csv("Students_Social_Media_Addiction.csv")
+
+View(students_data)
+
+glimpse(students_data)
+
+summary(students_data)
+
+missing_table <- data.frame(
+  Missing_Values = colSums(is.na(students_data)),
+  Percentage = (colSums(is.na(students_data)) / nrow(students_data)) * 100
+)
+  
+print("--- Έλεγχος Κενών Τιμών ανά Στήλη ---")
+print(missing_table)
+```
+
+## Περιγραφή των μεταβλητών (τύπος, εύρος τιμών, μονάδες μέτρησης)
+
+Το dataset αποτελείται από τις εξής μεταβλητές:
+
+-   **Student_ID:** Ακέραιος. Μοναδικό αναγνωριστικό.
+
+-   **Age:** Ακέραιος (16–25). Ηλικία σε έτη.
+
+-   **Gender:** Κατηγορική (“Male” / “Female”).
+
+-   **Academic_Level:** Κατηγορική. Βαθμίδα (High School / Undergraduate / Graduate).
+
+-   **Country:** Κατηγορική. Χώρα διαμονής.
+
+-   **Avg_Daily_Usage_Hours:** Αριθμητική (Συνεχής, 0-24). Μέσες ημερήσιες ώρες χρήσης.
+
+-   **Most_Used_Platform:** Κατηγορική. Κύρια πλατφόρμα (π.χ. Instagram, TikTok).
+
+-   **Affects_Academic_Performance:** Λογική (Boolean - Yes/No). Επιρροή στις ακαδημαϊκές επιδόσεις.
+
+-   **Sleep_Hours_Per_Night:** Αριθμητική (Συνεχής). Μέσες ώρες ύπνου τη νύχτα.
+
+-   **Mental_Health_Score:** Ακέραιος (1–10). Αυτοαξιολόγηση ψυχικής υγείας (1 = κακή, 10 = άριστη).
+
+-   **Relationship_Status:** Κατηγορική. Κατάσταση σχέσης.
+
+-   **Conflicts_Over_Social_Media:** Ακέραιος. Αριθμός συγκρούσεων λόγω social media.
+
+-   **Addicted_Score:** Ακέραιος (1–10). Σκορ εθισμού στα social media.
+
+## Υπολογισμός και παρουσίαση περιγραφικών στατιστικών:
+
+```{r}
+# Επιλογή μόνο των αριθμητικών μεταβλητών
+numeric_vars <- students_data %>% 
+  select(Age, Avg_Daily_Usage_Hours, Sleep_Hours_Per_Night, Mental_Health_Score, Conflicts_Over_Social_Media, Addicted_Score)
+```
+
+#### Μέτρα κεντρικής τάσης (μέσος όρος, διάμεσος, επικρατούσα τιμή)
+
+```{r}
+# Κεντρική Τάση
+get_mode <- function(v) {
+  uniqv <- unique(na.omit(v))
+  uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+
+ct_table <- data.frame(
+  Variable = colnames(numeric_vars),
+  Mean = round(sapply(numeric_vars, mean, na.rm = TRUE), 2),
+  Median = sapply(numeric_vars, median, na.rm = TRUE),
+  Mode = sapply(numeric_vars, get_mode)
+)
+print(ct_table)
+```
+
+#### Μέτρα διασποράς (τυπική απόκλιση, διακύμανση, εύρος)
+
+```{r}
+# Διασπορά
+disp_table <- data.frame(
+  Variable = colnames(numeric_vars),
+  Std_Dev = round(sapply(numeric_vars, sd, na.rm = TRUE), 2),
+  Variance = round(sapply(numeric_vars, var, na.rm = TRUE), 2),
+  Range = sapply(numeric_vars, function(x) diff(range(x, na.rm = TRUE)))
+)
+print(disp_table)
+```
+
+## Διερεύνηση συσχετίσεων:
+
+```{r}
+# Υπολογισμός μήτρας συσχέτισης
+cor_matrix <- cor(numeric_vars, use = "complete.obs")
+print(cor_matrix)
+```
+### Διάγραμμα Διασποράς (Scatterplot)
+
+```{r}
+# Δημιουργία του Scatterplot
+ggplot(head(students_data, 100), aes(x = Avg_Daily_Usage_Hours, y = Sleep_Hours_Per_Night, color = Student_ID)) +
+  geom_point(alpha = 0.7, size = 3) +
+  labs(
+    title = "Συσχέτιση Μέσης Χρήσης και Ωρών ύπνου ανά Νύχτα",
+    x = "Average Daily Usage (Hours)",
+    y = "Sleep Hours per Night",
+    color = "Student"
+  ) +
+  theme_minimal()
+
+```
+
+### Σχολιασμός αποτελεσμάτων
+
+Με βάση πάραπανω γράφημα διασποράς βγαίνουμε στο συμπέρασμα ότι με σταθερό ρυθμό οι μαθητές που χρησιμοποιούν πιο λιγές ώρες τα social media κοιμούνται περισσότερο χρόνο, ενώ οι μαθητές που χρησιμοποιούν περισσότερες ώρες τα social media κοιμούνται λιγότερο
+## Διάγραμμα Boxplot
+
+```{r}
+ggplot(students_data, aes(x = Academic_Level, y = Avg_Daily_Usage_Hours, fill = Academic_Level)) +
+  geom_boxplot(outlier.colour = "red", outlier.shape = 16, outlier.size = 2) +
+  labs(
+    title = "Ημερήσιες Ώρες Χρήσης Social Media ανά Επίπεδο Σπουδών",
+    x = "Επίπεδο Σπουδών",
+    y = "Μέσες Ημερήσιες Ώρες Χρήσης"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+### Σχολιασμός αποτελεσμάτων
+
+Από το dataset φαίνεται ότι οι φοιτητές **HighSchool** και **Undergraduate** παρουσιάζουν υψηλότερη ημερήσια χρήση (\~4.5–6 ώρες διάμεσος) σε σχέση με τους **Graduate** (\~2.5–3.5 ώρες). Αυτό υποδηλώνει ότι η χρήση social media μειώνεται καθώς ανεβαίνει το ακαδημαϊκό επίπεδο, πιθανώς λόγω αυξημένων υποχρεώσεων.​
+
+## Διάγραμμα Histogram
+
+```{r }
+ggplot(students_data, aes(x = Addicted_Score, fill = Gender)) +
+  geom_histogram(binwidth = 1, color = "white", alpha = 0.7,
+                 position = "dodge") +
+  scale_fill_manual(values = c("Female" = "#F4A7B9", "Male" = "#7FB3D3")) +
+  labs(
+    title = "Κατανομή Βαθμού Εθισμού ανά Φύλο",
+    x = "Addicted Score",
+    y = "Αριθμός Φοιτητών",
+    fill = "Φύλο"
+  ) +
+  theme_minimal()
+```
+
+### Σχολιασμός αποτελεσμάτων
+
+Το `position = "dodge"` τοποθετεί τις μπάρες δίπλα-δίπλα ώστε να συγκρίνεις άμεσα γυναίκες και άνδρες σε κάθε βαθμίδα εθισμού. Παρατηρείται τάση υψηλότερου score (7–9) σε ορισμένες ομάδες. Τέλος παρατηρείται ότι οι άνδρες έχουν μεγαλύτερο ποσοστό εθισμού από τις γυναίκες.
+
+## Διάγραμμα Bar Chart
+
+```{r }
+students_data %>%
+  count(Most_Used_Platform) %>%
+  arrange(desc(n)) %>%
+  ggplot(aes(x = reorder(Most_Used_Platform, n), y = n, fill = Most_Used_Platform)) +
+  geom_bar(stat = "identity", show.legend = FALSE) +
+  geom_text(aes(label = n), hjust = -0.3, size = 4) +
+  coord_flip() +
+  labs(
+    title = "Δημοφιλέστερες Πλατφόρμες Social Media",
+    x = "Πλατφόρμα",
+    y = "Αριθμός Φοιτητών"
+  ) +
+  theme_minimal()
+```
+
+### Σχολιασμός αποτελεσμάτων
+
+Το `reorder()` ταξινομεί τις μπάρες κατά φθίνουσα σειρά για καλύτερη αναγνωσιμότητα. Αναμένεται το **Instagram** και το **TikTok** να κυριαρχούν, ιδιαίτερα στους νεότερους φοιτητές.
